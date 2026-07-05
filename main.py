@@ -1,4 +1,11 @@
 
+
+"""
+Variables
+"""
+tasks = []
+
+
 def main_menu():
     """
     Purpose: to display menu
@@ -16,6 +23,10 @@ def main_menu():
         if user_input == "4":
             print("Exiting...")
             break
+        elif user_input == "2":
+            task = input("what task would you like to add? ")
+            tasks.append(task)
+            print(tasks)
 
 
     

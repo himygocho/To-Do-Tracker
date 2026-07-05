@@ -27,6 +27,8 @@ def main_menu():
             task = input("what task would you like to add? ")
             tasks.append(task)
             print(tasks)
+        elif user_input == "1":
+            print(tasks)
         elif user_input == "3":
             delete = input("What task would you like to delete? ")
             tasks.remove(delete)

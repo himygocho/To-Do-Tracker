@@ -10,7 +10,10 @@
 
     <h1>My To-Do Tracker</h1>
     <h3>Add a New Task</h3>
-    <input type="text" placeholder="Enter new workout here">
+    <form action="/add" method="POST">
+        <input type="text" name="task" placeholder="Enter new workout here">
+        <button type="submit">Submit</button>
+    </form>
     <ul>
         <ul>
             {% for task in tasks %}
@@ -18,7 +21,7 @@
             {% endfor %}
         </ul>
     </ul>
-    <button type="submit">Submit</button>
+    
 
 </body>
 </html>

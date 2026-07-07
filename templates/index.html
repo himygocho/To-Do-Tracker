@@ -12,9 +12,11 @@
     <h3>Add a New Task</h3>
     <input type="text" placeholder="Enter new workout here">
     <ul>
-        <li>Workout</li>
-        <li>Shopping</li>
-        <li>Taxes</li>
+        <ul>
+            {% for task in tasks %}
+                <li>{{ task }}</li>
+            {% endfor %}
+        </ul>
     </ul>
     <button type="submit">Submit</button>
 

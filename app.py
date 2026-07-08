@@ -18,21 +18,12 @@ def load_tasks():
     except FileNotFoundError:
         pass
 
+def save_tasks():
+    with open("tasks.txt", "w") as file:
+        for task in tasks:
+            file.write(f"{task['id']}|{task['name']}\n")
+
 load_tasks()
-
-def load_tasks():
-    try:
-        with open("tasks.txt", "r") as file:
-            for line in file:
-                task_id, task_name = line.strip().split("|")
-
-                tasks.append({
-                    "id": int(task_id),
-                    "name": task_name
-                })
-
-    except FileNotFoundError:
-        pass
 
 @app.route("/")
 def home():
@@ -69,6 +60,8 @@ def delete():
     for task in tasks:
         if task["id"] == task_id:
             tasks.remove(task)
+
+    save_tasks()
 
     return redirect(url_for("home"))
 

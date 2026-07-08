@@ -2,3 +2,11 @@
 2|sex
 3|condoms
 1|dog
+5|learn sql lite
+6|beat up a poodle
+7|create a sex tape
+6|go grocery shopping
+1|sex
+2|clap my girlfriends cheeks until she cums
+3|condoms
+4|create a sex tape

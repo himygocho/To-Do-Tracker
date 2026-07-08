@@ -3,6 +3,23 @@ from flask import Flask, render_template, request, redirect, url_for
 app = Flask(__name__)
 
 tasks = []
+
+def load_tasks():
+    try:
+        with open("tasks.txt", "r") as file:
+            for line in file:
+                task_id, task_name = line.strip().split("|")
+
+                tasks.append({
+                    "id": int(task_id),
+                    "name": task_name
+                })
+
+    except FileNotFoundError:
+        pass
+
+load_tasks()
+
 def load_tasks():
     try:
         with open("tasks.txt", "r") as file:

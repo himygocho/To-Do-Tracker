@@ -19,11 +19,18 @@
     <ul>
         <ul>
             {% for task in tasks %}
-                <li>{{loop.index}}. {{ task }}</li>
+                <li>
+                    {{task.id}}. {{ task.name }}
+                </li>
             {% endfor %}
         </ul>
     </ul>
     
+    <h3>Delete Task</h3>
+    <form action="/delete" method="POST">
+        <input type="number" name="task_id" placeholder="Type # of Task to Delete">
+        <button type="submit">Delete</button>
+    </form>
 
 </body>
 </html>

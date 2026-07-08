@@ -2,9 +2,20 @@ from flask import Flask, render_template, request, redirect, url_for
 
 app = Flask(__name__)
 
-tasks = [
-    
-]
+tasks = []
+def load_tasks():
+    try:
+        with open("tasks.txt", "r") as file:
+            for line in file:
+                task_id, task_name = line.strip().split("|")
+
+                tasks.append({
+                    "id": int(task_id),
+                    "name": task_name
+                })
+
+    except FileNotFoundError:
+        pass
 
 @app.route("/")
 def home():
@@ -23,6 +34,15 @@ def add():
     }
 
     tasks.append(new_task)
+
+    import os
+    print("CURRENT DIRECTORY:", os.getcwd())
+
+    with open("tasks.txt", "a") as file:
+        file.write(f"{new_task['id']}|{new_task['name']}\n")
+        
+    print("Saved:", new_task)
+
     return redirect(url_for("home"))
 
 @app.route("/delete", methods=["POST"])

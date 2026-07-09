@@ -21,6 +21,11 @@
             {% for task in tasks %}
                 <li>
                     {{task.id}}. {{ task.name }}
+                    <form action="/edit" method="POST">
+                        <input type="hidden" name="task_id" value="{{task.id}}">
+                        <input type="text" name="new_name" placeholder="New task name">
+                        <button type="submit">Edit</button>
+                    </form>
                 </li>
             {% endfor %}
         </ul>

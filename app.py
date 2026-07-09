@@ -65,6 +65,19 @@ def delete():
 
     return redirect(url_for("home"))
 
+@app.route("/edit", methods=["POST"])
+def edit():
+    task_id = int(request.form["task_id"])
+    new_name = request.form["new_name"]
+
+    for task in tasks:
+        if task["id"] == task_id:
+            task["name"] = new_name
+
+    save_tasks()
+
+    return redirect(url_for("home"))
+
 if __name__ == "__main__":
     app.run(debug=True)
 

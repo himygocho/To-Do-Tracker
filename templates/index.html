@@ -10,32 +10,60 @@
 
     <h1>My To-Do Tracker</h1>
     <h3>Add a New Task</h3>
-
+    
     <form action="/add" method="POST">
-        <input type="text" name="task" placeholder="Enter new workout here">
+        <input type="text"
+               name="task"
+               placeholder="Enter new workout here">
         <button type="submit">Submit</button>
     </form>
-
+    
     <ul>
-        <ul>
-            {% for task in tasks %}
-                <li>
-                    {{task.id}}. {{ task.name }}
-                    <form action="/edit" method="POST">
-                        <input type="hidden" name="task_id" value="{{task.id}}">
-                        <input type="text" name="new_name" placeholder="New task name">
-                        <button type="submit">Edit</button>
-                    </form>
-                </li>
-            {% endfor %}
-        </ul>
+        {% for task in tasks %}
+            <li>
+                {% if task.completed %}
+                    ☑
+                {% else %}
+                    ☐
+                {% endif %}
+    
+                {{ task.id }}. {{ task.name }}
+    
+                <form action="/complete" method="POST">
+                    <input type="hidden"
+                           name="task_id"
+                           value="{{ task.id }}">
+                    <button type="submit">
+                        Toggle Complete
+                    </button>
+                </form>
+    
+                <form action="/edit" method="POST">
+                    <input type="hidden"
+                           name="task_id"
+                           value="{{ task.id }}">
+    
+                    <input type="text"
+                           name="new_name"
+                           placeholder="New task name">
+    
+                    <button type="submit">
+                        Edit
+                    </button>
+                </form>
+            </li>
+        {% endfor %}
     </ul>
     
     <h3>Delete Task</h3>
     <form action="/delete" method="POST">
-        <input type="number" name="task_id" placeholder="Type # of Task to Delete">
+        <input type="number"
+               name="task_id"
+               placeholder="Type # of Task to Delete">
         <button type="submit">Delete</button>
     </form>
+    
+
 
 </body>
 </html>
